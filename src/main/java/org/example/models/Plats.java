@@ -2,26 +2,34 @@ package org.example.models;
 
 public class Plats {
 
-    private String Name;
-    private String Type;
-    private String State;
+
+    protected enum State {
+        MANGEABLE,
+        IMMENGEABLE,
+        POURRI,
+    }
+
+    private String name;
+    private String type;
+    private State state;
+
 
     public String getName(){
-       return Name;
+       return name;
     }
     public String getType(){
-        return Type;
+        return type;
     }
-    public String getState(){ return State;}
+    public State getState(){ return state;}
 
     public void setName(String Name){
-        this.Name = Name;
+        this.name = Name;
     }
     public void setType(String Type){
-        this.Type = Type;
+        this.type = Type;
     }
-    public void setState(String State){
-        this.State = State;
+    public void setState(State State){
+        this.state = State;
     }
 
 }
