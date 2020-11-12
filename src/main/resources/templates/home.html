@@ -1,7 +1,60 @@
 #parse("base.html")
 #@mainLayout()
-<h1>Home Template</h1>
-<div>
-    <img src="img/java.jpg" />
+<h1 class="text-center">Les meilleurs burgers des Paris</h1>
+
+<div class="row w-100">
+    <div class="col-sm-4">
+        <div class="card w-100">
+            <div class="wrapper">
+                <img src="/img/burger1.jpg" class="card-img-top " alt="burger1">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Burger Name</h5>
+                <p class="card-text">Poulet pané + Oignons + Tomates + Mayonnaise</p>
+
+                <button type="button" class="btn btn-primary">
+                    <span class="badge badge-light">9€</span> Ajouter   <i class="fas fa-plus"></i>
+                    <span class="sr-only">unread messages</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card w-100">
+            <div class="wrapper">
+                <img src="/img/burger2.jpg" class="card-img-top " alt="burger2">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Burger Name</h5>
+                <p class="card-text">Poulet pané + Oignons + Tomates + Mayonnaise</p>
+
+                <button type="button" class="btn btn-primary">
+                    <span class="badge badge-light">11€</span> Ajouter   <i class="fas fa-plus"></i>
+                    <span class="sr-only">unread messages</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card w-100">
+            <div class="wrapper">
+                <img src="/img/burger3.jpg" class="card-img-top " alt="burger3">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Burger Name</h5>
+                <p class="card-text">Poulet pané + Oignons + Tomates + Mayonnaise</p>
+
+                <button type="button" class="btn btn-primary">
+                    <span class="badge badge-light">12€</span> Ajouter   <i class="fas fa-plus"></i>
+                    <span class="sr-only">unread messages</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary d-block w-100 mt-5">Commander</button>
 </div>
+
 #end
