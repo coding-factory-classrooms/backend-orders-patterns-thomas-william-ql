@@ -2,6 +2,15 @@ package org.example.models;
 
 public class Plats {
 
+    @Override
+    public String toString() {
+        return "Plats{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", state=" + state +
+                '}';
+    }
+
     protected enum State {
         MANGEABLE,
         IMMENGEABLE,
@@ -10,7 +19,7 @@ public class Plats {
 
     private String name;
     private String type;
-    private State state;
+    private State state = State.MANGEABLE;
 
     public String getName(){
        return name;
