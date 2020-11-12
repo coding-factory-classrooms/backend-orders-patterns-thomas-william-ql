@@ -71,4 +71,21 @@ public class SystemeCommandeController {
         model.put("history", systemeCommande.getHistory());
         return Template.render("dashboard.html", model);
     }
+
+
+    public String systemHistory(Request request, Response response) {
+        Map<String, Object> model = new HashMap<>();
+
+
+        String state = request.queryParamOrDefault("action", "");
+        if (state.equals("undo"))  systemeCommande.restore(systemeCommande.getSystemeCommandeHistory().undo());
+        if (state.equals("redo"))  systemeCommande.restore(systemeCommande.getSystemeCommandeHistory().redo());
+
+
+        model.put("commands", systemeCommande.getOrderList());
+        model.put("history", systemeCommande.getHistory());
+        return Template.render("dashboard.html", model);
+    }
+
+
 }

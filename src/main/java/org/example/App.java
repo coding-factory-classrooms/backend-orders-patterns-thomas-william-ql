@@ -7,6 +7,7 @@ import org.example.core.Template;
 import org.example.middlewares.LoggerMiddleware;
 import org.example.models.Commande;
 import org.example.models.Food;
+import org.example.models.LogSystem;
 import org.example.models.SystemeCommande;
 import spark.Spark;
 
@@ -19,7 +20,8 @@ public class App {
 
     public static void main(String[] args) {
         initialize();
-        SystemeCommande systemeCommande = new SystemeCommande();
+        LogSystem logSystem = new LogSystem();
+        SystemeCommande systemeCommande = new SystemeCommande(logSystem);
         CommandeController commandeController = new CommandeController(systemeCommande);
         SystemeCommandeController systemeCommandeController = new SystemeCommandeController(systemeCommande);
 
@@ -42,6 +44,9 @@ public class App {
         });
         Spark.get("/create/:id", (req, res) -> {
             return systemeCommandeController.createCommande(req, res);
+        });
+        Spark.get("/history", (req, res) -> {
+            return systemeCommandeController.systemHistory(req, res);
         });
 
         Spark.get("/customer", (req, res) -> {
