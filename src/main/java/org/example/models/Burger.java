@@ -7,7 +7,11 @@ public class Burger extends Plats{
     return null;
     }
     @Override
-    public String getType(){ return null; }
+    public String getType(){
+        return null;
+    }
     @Override
-    public Plats.State getState(){ return null; }
+    public Plats.State getState(){
+        return null;
+    }
 }

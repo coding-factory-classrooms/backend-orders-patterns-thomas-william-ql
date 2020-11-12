@@ -17,8 +17,6 @@ public class Commande {
         ANNULEE,
     }
 
-
-
     private OnCommandeChangeListener onCommandeChangeListener;
     private State state = State.NOUVEAU;
     private List<Plats> plats = new ArrayList<>();

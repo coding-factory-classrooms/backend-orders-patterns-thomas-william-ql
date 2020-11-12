@@ -8,8 +8,6 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
 
     private final List<String> logs = new ArrayList<>();
 
-
-
     private final List<String> history = new ArrayList<>();
 
     public List<Commande> getOrderList(){
