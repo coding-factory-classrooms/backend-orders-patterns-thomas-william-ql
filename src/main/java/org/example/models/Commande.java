@@ -17,9 +17,13 @@ public class Commande {
         ANNULEE,
     }
 
+
+
+    private final CommandHistory commandHistory = new CommandHistory();
+
     private OnCommandeChangeListener onCommandeChangeListener;
     private State state = State.NOUVEAU;
-    private List<Plats> plats = new ArrayList<>();
+    private final List<Plats> plats = new ArrayList<>();
     private LocalDate localdate = LocalDate.now();
 
     public State getState(){ return state; }
@@ -27,30 +31,40 @@ public class Commande {
     public LocalDate getLocaldate(){ return localdate; }
 
     public void setState(State state){
+        //Save this first state
+        if (commandHistory.getCurrentCommandState() == null) this.commandHistory.addCommandState(save(this.state));
+
         this.state = state;
+        this.commandHistory.addCommandState(save(state));
         if (onCommandeChangeListener != null) {
             onCommandeChangeListener.onCommandeChange(this);
         }
     }
     public void addPlats(List<Plats> plats){
         this.plats.addAll(plats);
-        if (onCommandeChangeListener != null) {
-            onCommandeChangeListener.onCommandeChange(this);
-        }
-    }    public void addPlats(Plats plats){
+    }
+    public void addPlats(Plats plats){
         this.plats.add(plats);
-        if (onCommandeChangeListener != null) {
-            onCommandeChangeListener.onCommandeChange(this);
-        }
     }
     public void setLocaldate(LocalDate localdate){
         this.localdate = localdate;
-        if (onCommandeChangeListener != null) {
-            onCommandeChangeListener.onCommandeChange(this);
-        }
     }
 
     public void setOnCommandeChangeListener(OnCommandeChangeListener onCommandeChangeListener) {
         this.onCommandeChangeListener = onCommandeChangeListener;
     }
+
+    public CommandHistory getCommandHistory() {
+        return commandHistory;
+    }
+
+    public CommandState save(State state){
+        return new CommandState(state);
+    }
+
+    public void restore(CommandState commandState) {
+        System.out.println("RESTORE");
+        this.state = commandState.getState();
+    }
+
 }

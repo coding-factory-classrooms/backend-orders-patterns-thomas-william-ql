@@ -56,7 +56,7 @@ public class SystemeCommandeTest {
         systemeCommande.addOrder(commande);
 
         commande.setOnCommandeChangeListener(systemeCommande);
-        commande.addPlats(new Plats());
+        commande.setState(Commande.State.ENCOURS);
 
         System.out.println(systemeCommande.getHistory());
         Assert.assertEquals(1 , systemeCommande.getHistory().size());
