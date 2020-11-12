@@ -14,6 +14,15 @@ public class App {
         Spark.get("/", (req, res) -> {
             return Template.render("home.html", new HashMap<>());
         });
+        Spark.get("/dashboard", (req, res) -> {
+            return Template.render("dashboard.html", new HashMap<>());
+        });
+        Spark.get("/customer", (req, res) -> {
+            return Template.render("customer.html", new HashMap<>());
+        });
+        Spark.get("/order", (req, res) -> {
+            return Template.render("order.html", new HashMap<>());
+        });
     }
 
     static void initialize() {
