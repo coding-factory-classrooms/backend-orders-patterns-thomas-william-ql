@@ -21,6 +21,8 @@ public class Commande {
 
     private final CommandHistory commandHistory = new CommandHistory();
 
+
+    private final int id = (int) Math.round((Math.random() * (9999 - 1)) + 1);
     private OnCommandeChangeListener onCommandeChangeListener;
     private State state = State.NOUVEAU;
     private final List<Plats> plats = new ArrayList<>();
@@ -58,13 +60,18 @@ public class Commande {
         return commandHistory;
     }
 
+    public int getId() {
+        return id;
+    }
+
+
     public CommandState save(State state){
         return new CommandState(state);
     }
 
     public void restore(CommandState commandState) {
         System.out.println("RESTORE");
-        this.state = commandState.getState();
+        if (commandState != null) this.state = commandState.getState();
     }
 
 }

@@ -6,6 +6,39 @@
     <thead>
     <tr>
         <th scope="col">#</th>
+        <th scope="col">order ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    #foreach ($command in $commands)
+        #if ($command.getState() == "ENCOURS" || $command.getState() == "NOUVEAU")
+        <tr>
+            <th scope="row">$velocityCount</th>
+            <td>$command.getId()</td>
+            <td>$command.getLocaldate()</td>
+            <td>$command.getState()</td>
+            <td>$command.getPlats()</td>
+            <td><a class="btn" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
+            <td><a class="btn" href="/action/$velocityCount?action=undo"><i class="fas fa-undo"></i></a></td>
+            <td><a class="btn" href="/action/$velocityCount?action=redo"><i class="fas fa-redo"></i></a></td>
+        </tr>
+        #end
+    #end
+    </tbody>
+</table>
+
+<h2>Archive</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">order ID</th>
         <th scope="col">Date</th>
         <th scope="col">Status</th>
         <th></th>
@@ -13,13 +46,16 @@
     </thead>
     <tbody>
     #foreach ($command in $commands)
+    #if ($command.getState() == "TERMINEE" || $command.getState() == "ANNULEE")
     <tr>
         <th scope="row">$velocityCount</th>
+        <td>$command.getId()</td>
         <td>$command.getLocaldate()</td>
         <td>$command.getState()</td>
         <td>$command.getPlats()</td>
-        <td><button class="btn"><i class="fas fa-trash-alt"></i></button></td>
+        <td><a class="btn" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
     </tr>
+    #end
     #end
     </tbody>
 </table>
@@ -28,18 +64,16 @@
     <thead>
     <tr>
         <th scope="col">#</th>
+        <th scope="col">order ID</th>
         <th scope="col">Date</th>
         <th scope="col">Status</th>
     </tr>
     </thead>
     <tbody>
-    #foreach ($command in $commands)
+    #foreach ($hist in $history)
     <tr>
         <th scope="row">$velocityCount</th>
-        <td>$command.getLocaldate()</td>
-        <td>$command.getState()</td>
-        <td>$command.getName()</td>
-        <td>$command.getType()</td>
+        <td>$hist</td>
     </tr>
     #end
     </tbody>

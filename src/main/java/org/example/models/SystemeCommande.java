@@ -14,6 +14,11 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
         return orderList;
     }
 
+    public Commande getCommande(int index){
+        return this.orderList.get(index);
+    }
+
+
     public void addOrder(Commande commande){
         if (commande.getState() != Commande.State.NOUVEAU){
             return;
@@ -31,6 +36,6 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
 
     @Override
     public void onCommandeChange(Commande commande) {
-        history.add("Commande etat : " + commande.getState() + " | date : " + commande.getLocaldate() + " | plats " + commande.getPlats());
+        history.add("Order ID : " + commande.getId() + " | Commande etat : " + commande.getState() + " | date : " + commande.getLocaldate() + " | plats " + commande.getPlats());
     }
 }

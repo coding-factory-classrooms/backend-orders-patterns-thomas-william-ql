@@ -1,9 +1,12 @@
 package org.example;
 
+import org.example.controllers.CommandeController;
 import org.example.controllers.SystemeCommandeController;
 import org.example.core.Conf;
 import org.example.core.Template;
 import org.example.middlewares.LoggerMiddleware;
+import org.example.models.Commande;
+import org.example.models.Plats;
 import org.example.models.SystemeCommande;
 import spark.Spark;
 
@@ -15,16 +18,42 @@ public class App {
     public static void main(String[] args) {
         initialize();
         SystemeCommande systemeCommande = new SystemeCommande();
-
+        CommandeController commandeController = new CommandeController(systemeCommande);
         SystemeCommandeController systemeCommandeController = new SystemeCommandeController(systemeCommande);
+
+
+
+        Commande commande = new Commande();
+        commande.addPlats(new Plats());
+        commande.setOnCommandeChangeListener(systemeCommande);
+        systemeCommande.addOrder(commande);
+
+        commande = new Commande();
+        commande.addPlats(new Plats());
+        commande.setOnCommandeChangeListener(systemeCommande);
+        systemeCommande.addOrder(commande);
+
+        commande = new Commande();
+        commande.addPlats(new Plats());
+        commande.setOnCommandeChangeListener(systemeCommande);
+        systemeCommande.addOrder(commande);
+
+
 
         Spark.get("/", (req, res) -> {
             return Template.render("home.html", new HashMap<>());
         });
         Spark.get("/dashboard", (req, res) -> {
             return systemeCommandeController.list(req, res);
-            //return Template.render("dashboard.html", new HashMap<>());
         });
+        Spark.get("/action/:id", (req, res) -> {
+            return systemeCommandeController.commandHistory(req, res);
+        });
+
+        Spark.get("/commande/:id", (req, res) -> {
+            return commandeController.changeCommande(req, res);
+        });
+
         Spark.get("/customer", (req, res) -> {
             return Template.render("customer.html", new HashMap<>());
         });

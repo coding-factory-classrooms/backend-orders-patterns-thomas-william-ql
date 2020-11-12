@@ -42,7 +42,7 @@ public class CommandHistory {
 
 
     public CommandState redo(){
-        System.out.println("UNDO");
+        System.out.println("REDO");
         if (currentState >= this.history.size() -1) {
             currentState = this.history.size() -1;
             return getCommandState(currentState);

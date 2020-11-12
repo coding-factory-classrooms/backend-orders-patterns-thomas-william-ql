@@ -3,17 +3,50 @@
 
 
 <h1 class="mb-5">Order Team #0</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">order ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">$orderID</th>
+        <td>$commande.getId()</td>
+        <td>$commande.getLocaldate()</td>
+        <td>$commande.getState()</td>
+        <td>$commande.getPlats()</td>
+    </tr>
+    </tbody>
+</table>
 <div class="input-group mb-3">
     <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">State</label>
+        <label class="input-group-text" for="stateSelect">State</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01">
-        <option selected>Choisir...</option>
-        <option value="1">Nouveau</option>
-        <option value="2">En cours</option>
-        <option value="3">Terminée</option>
-        <option value="3">Annulée</option>
+    <select class="custom-select" id="stateSelect">
+        <option selected value="NULL">Choisir...</option>
+        <option value="NOUVEAU">Nouveau</option>
+        <option value="ENCOURS">En cours</option>
+        <option value="TERMINEE">Terminée</option>
+        <option value="ANNULEE">Annulée</option>
     </select>
+    <a href="/commande/$orderID?state="></a>
+    <script>
+
+
+        const stateSelect = document.getElementById("stateSelect");
+        stateSelect.addEventListener("change", function (event){
+            console.log(event);
+            let value = stateSelect.value;
+            if (value === "NULL") return ;
+            window.location = window.location.origin + "/commande/$orderID?state=" + stateSelect.value;
+        })
+
+    </script>
 </div>
 
 #end
