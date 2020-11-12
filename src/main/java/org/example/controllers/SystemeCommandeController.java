@@ -2,13 +2,12 @@ package org.example.controllers;
 
 import org.example.core.Template;
 import org.example.models.Commande;
-import org.example.models.Plats;
+import org.example.models.Food;
 import org.example.models.SystemeCommande;
 import spark.Request;
 import spark.Response;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SystemeCommandeController {
 
@@ -23,7 +22,6 @@ public class SystemeCommandeController {
         Map<String, Object> model = new HashMap<>();
 
         model.put("commands", systemeCommande.getOrderList());
-        System.out.println(systemeCommande.getHistory());
         model.put("history", systemeCommande.getHistory());
         return Template.render("dashboard.html", model);
     }
@@ -42,6 +40,32 @@ public class SystemeCommandeController {
         if (state.equals("undo"))  commande.restore(commande.getCommandHistory().undo());
         if (state.equals("redo"))  commande.restore(commande.getCommandHistory().redo());
 
+
+        model.put("commands", systemeCommande.getOrderList());
+        model.put("history", systemeCommande.getHistory());
+        return Template.render("dashboard.html", model);
+    }
+
+    public String createCommande(Request request, Response response) {
+
+        Food burger = new Food(Food.Type.BURGER, "Double Cheese");
+        Food accompagnement = new Food(Food.Type.ACCOMPAGNEMENT, "Potatoes sauce creamy deluxe");
+        Food boisson = new Food(Food.Type.BOISSON, "Coca Cola");
+
+
+        Integer idMenu = Integer.parseInt(request.params(":id"));
+        List<Food> menu  = new ArrayList<>();
+
+        if (idMenu.equals(1)) menu = Arrays.asList(burger, accompagnement, boisson);
+        if (idMenu.equals(2)) menu = Arrays.asList(burger, accompagnement);
+        if (idMenu.equals(3)) menu = Arrays.asList(burger);
+
+        Commande commande = new Commande();
+        commande.addPlats(menu);
+        commande.setOnCommandeChangeListener(systemeCommande);
+        systemeCommande.addOrder(commande);
+
+        Map<String, Object> model = new HashMap<>();
 
         model.put("commands", systemeCommande.getOrderList());
         model.put("history", systemeCommande.getHistory());

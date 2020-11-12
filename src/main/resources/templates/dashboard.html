@@ -2,7 +2,7 @@
 #@mainLayout()
 <h1 class=""mb-5>Dashboard <button class="btn"><i class="fas fa-sync-alt"></i></button></h1>
 <h2>Current order</h2>
-<table class="table">
+<table class="table table-responsive table-striped">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -24,7 +24,7 @@
             <td>$command.getLocaldate()</td>
             <td>$command.getState()</td>
             <td>$command.getPlats()</td>
-            <td><a class="btn" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
+            <td><a class="btn btn-outline-primary" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
             <td><a class="btn" href="/action/$velocityCount?action=undo"><i class="fas fa-undo"></i></a></td>
             <td><a class="btn" href="/action/$velocityCount?action=redo"><i class="fas fa-redo"></i></a></td>
         </tr>
@@ -34,7 +34,7 @@
 </table>
 
 <h2>Archive</h2>
-<table class="table">
+<table class="table  table-responsive table-striped">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -53,20 +53,18 @@
         <td>$command.getLocaldate()</td>
         <td>$command.getState()</td>
         <td>$command.getPlats()</td>
-        <td><a class="btn" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
+        <td><a class="btn btn-outline-primary" href="/commande/$velocityCount" >Voir la commande <i class="fas fa-arrow-right"></i></a></td>
     </tr>
     #end
     #end
     </tbody>
 </table>
 <h2>History</h2>
-<table class="table">
+<table class="table  table-responsive table-striped">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">order ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">Status</th>
     </tr>
     </thead>
     <tbody>

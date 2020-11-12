@@ -1,6 +1,4 @@
-import org.example.models.Burger;
 import org.example.models.Commande;
-import org.example.models.Plats;
 import org.example.models.SystemeCommande;
 import org.junit.Assert;
 import org.junit.Test;

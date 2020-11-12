@@ -1,44 +1,38 @@
 package org.example.models;
 
-public class Plats {
+public class Food {
 
     @Override
     public String toString() {
-        return "Plats{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", state=" + state +
-                '}';
+        return ""+this.type + " : "+ this.name ;
     }
 
-    protected enum State {
-        MANGEABLE,
-        IMMENGEABLE,
-        POURRI,
+    public enum Type {
+        BURGER,
+        ACCOMPAGNEMENT,
+        BOISSON,
     }
+    public Food(Type type, String name){
+        this.type = type;
+        this.name = name;
+    }
+
 
     private String name;
-    private String type;
-    private State state = State.MANGEABLE;
+    private Type type;
 
     public String getName(){
        return name;
     }
-    public String getType(){
+    public Type getType(){
         return type;
-    }
-    public State getState(){
-        return state;
     }
 
     public void setName(String Name){
         this.name = Name;
     }
-    public void setType(String Type){
-        this.type = Type;
-    }
-    public void setState(State State){
-        this.state = State;
+    public void setType(Type type){
+        this.type = type;
     }
 
 }

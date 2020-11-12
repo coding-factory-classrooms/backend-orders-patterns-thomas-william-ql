@@ -24,7 +24,7 @@ public class CommandeTest {
 
     @Test
     public void verifyEmptyUndo(){
-       commande.getCommandHistory().undo();
+       Assert.assertNull(commande.getCommandHistory().undo());
     }
 
 

@@ -20,7 +20,6 @@ public class CommandHistory {
         if (index >= 0  && this.history.size() > index) {
             return this.history.get(index);
         }
-
         return null;
     }
 

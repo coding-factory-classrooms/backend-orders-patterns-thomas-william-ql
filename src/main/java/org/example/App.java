@@ -6,10 +6,12 @@ import org.example.core.Conf;
 import org.example.core.Template;
 import org.example.middlewares.LoggerMiddleware;
 import org.example.models.Commande;
-import org.example.models.Plats;
+import org.example.models.Food;
 import org.example.models.SystemeCommande;
 import spark.Spark;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class App {
@@ -22,21 +24,6 @@ public class App {
         SystemeCommandeController systemeCommandeController = new SystemeCommandeController(systemeCommande);
 
 
-
-        Commande commande = new Commande();
-        commande.addPlats(new Plats());
-        commande.setOnCommandeChangeListener(systemeCommande);
-        systemeCommande.addOrder(commande);
-
-        commande = new Commande();
-        commande.addPlats(new Plats());
-        commande.setOnCommandeChangeListener(systemeCommande);
-        systemeCommande.addOrder(commande);
-
-        commande = new Commande();
-        commande.addPlats(new Plats());
-        commande.setOnCommandeChangeListener(systemeCommande);
-        systemeCommande.addOrder(commande);
 
 
 
@@ -52,6 +39,9 @@ public class App {
 
         Spark.get("/commande/:id", (req, res) -> {
             return commandeController.changeCommande(req, res);
+        });
+        Spark.get("/create/:id", (req, res) -> {
+            return systemeCommandeController.createCommande(req, res);
         });
 
         Spark.get("/customer", (req, res) -> {

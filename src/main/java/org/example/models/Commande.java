@@ -25,11 +25,11 @@ public class Commande {
     private final int id = (int) Math.round((Math.random() * (9999 - 1)) + 1);
     private OnCommandeChangeListener onCommandeChangeListener;
     private State state = State.NOUVEAU;
-    private final List<Plats> plats = new ArrayList<>();
+    private final List<Food> plats = new ArrayList<>();
     private LocalDate localdate = LocalDate.now();
 
     public State getState(){ return state; }
-    public List<Plats> getPlats(){ return plats; }
+    public List<Food> getPlats(){ return plats; }
     public LocalDate getLocaldate(){ return localdate; }
 
     public void setState(State state){
@@ -42,11 +42,11 @@ public class Commande {
             onCommandeChangeListener.onCommandeChange(this);
         }
     }
-    public void addPlats(List<Plats> plats){
+    public void addPlats(List<Food> plats){
         this.plats.addAll(plats);
     }
-    public void addPlats(Plats plats){
-        this.plats.add(plats);
+    public void addPlats(Food food){
+        this.plats.add(food);
     }
     public void setLocaldate(LocalDate localdate){
         this.localdate = localdate;
