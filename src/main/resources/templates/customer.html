@@ -10,11 +10,13 @@
     </tr>
     </thead>
     <tbody>
+    #foreach ($command in $commands)
     <tr>
-        <th scope="row">1</th>
-        <td>09-11-2020</td>
-        <td>Nouveau</td>
+        <th scope="row">$velocityCount</th>
+        <td>$command.getLocaldate()</td>
+        <td>$command.getState()</td>
     </tr>
+    #end
     </tbody>
 </table>
 <h2>History</h2>
@@ -27,11 +29,13 @@
     </tr>
     </thead>
     <tbody>
+    #foreach ($command in $commands)
     <tr>
-        <th scope="row">1</th>
-        <td>09-11-2020</td>
-        <td>Nouveau</td>
+        <th scope="row">$velocityCount</th>
+        <td>$command.getLocaldate()</td>
+        <td>$command.getState()</td>
     </tr>
+    #end
     </tbody>
 </table>
 

@@ -1,7 +1,6 @@
 #parse("base.html")
 #@mainLayout()
-<h1 class="mb-5">Orders Dashboard <button class="btn"><i class="fas fa-sync-alt"></i></button></h1>
-
+<h1 class=""mb-5>Dashboard <button class="btn"><i class="fas fa-sync-alt"></i></button></h1>
 <h2>Current order</h2>
 <table class="table">
     <thead>
@@ -9,16 +8,18 @@
         <th scope="col">#</th>
         <th scope="col">Date</th>
         <th scope="col">Status</th>
-        <th scope="col"></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
+    #foreach ($command in $commands)
     <tr>
-        <th scope="row">1</th>
-        <td>09-11-2020</td>
-        <td>Nouveau</td>
-        <td><i class="fas fa-trash-alt"></i></td>
+        <th scope="row">$velocityCount</th>
+        <td>$command.getLocaldate()</td>
+        <td>$command.getState()</td>
+        <td><button class="btn"><i class="fas fa-trash-alt"></i></button></td>
     </tr>
+    #end
     </tbody>
 </table>
 <h2>History</h2>
@@ -31,12 +32,13 @@
     </tr>
     </thead>
     <tbody>
+    #foreach ($command in $commands)
     <tr>
-        <th scope="row">1</th>
-        <td>09-11-2020</td>
-        <td>Nouveau</td>
+        <th scope="row">$velocityCount</th>
+        <td>$command.getLocaldate()</td>
+        <td>$command.getState()</td>
     </tr>
+    #end
     </tbody>
 </table>
-
 #end
