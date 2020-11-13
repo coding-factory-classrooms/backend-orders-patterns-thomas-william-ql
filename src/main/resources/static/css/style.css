@@ -1,4 +1,6 @@
-
+h1 {
+margin-bottom: 30px;
+}
 .expo {
 
     font-size: 12px;
@@ -11,6 +13,7 @@
     border-radius: 30px;
     text-decoration: none;
     color: black;
+      box-shadow: 0px 0px 6px 1px #0000003b;
 }
 .card:hover {
     text-decoration: none;
@@ -35,13 +38,16 @@
     white-space: nowrap;
 }
 #content {
-    background-color: #e2e2e2;
+    background-color: #eee;
+    height: 100vh;
 }
 html {
     background-color: #e2e2e2;
 }
 .container {
     background-color: white;
-    box-shadow: 0px 0px 6px 1px #0000003b;
+
     padding: 2%;
+      margin-top: 50px;
+      border-radius: 8px;
 }
