@@ -9,8 +9,9 @@ public class SystemeCommandeHistory {
     private final List<List<OrderSave>> orderSaveList = new ArrayList<>();
     private int current = -1;
 
-    public void save(List<Commande> commandeList) {
-       this.orderSaveList.add(commandeList.stream().map(Commande::getSave).collect(Collectors.toList()));
+    public void save(List<Order> orderList) {
+        if (empty()) this.orderSaveList.add(new ArrayList<>());
+        this.orderSaveList.add(orderList.stream().map(Order::getSave).collect(Collectors.toList()));
         current = this.orderSaveList.size() - 1;
     }
 
@@ -27,11 +28,9 @@ public class SystemeCommandeHistory {
     }
 
     public List<OrderSave> undo(){
-
         System.out.println("UNDO List<OrderSave>");
         if (current < 1) {
-            List<OrderSave> listOrderSave = getListOrderSave(0);
-            return listOrderSave;
+            return getListOrderSave(0);
         }
 
         current--;
@@ -51,6 +50,6 @@ public class SystemeCommandeHistory {
     }
 
     public boolean empty(){
-        return this.orderSaveList.size() > 0;
+        return this.orderSaveList.size() < 1;
     }
 }

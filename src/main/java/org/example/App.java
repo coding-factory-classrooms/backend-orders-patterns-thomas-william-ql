@@ -5,14 +5,10 @@ import org.example.controllers.SystemeCommandeController;
 import org.example.core.Conf;
 import org.example.core.Template;
 import org.example.middlewares.LoggerMiddleware;
-import org.example.models.Commande;
-import org.example.models.Food;
 import org.example.models.LogSystem;
 import org.example.models.SystemeCommande;
 import spark.Spark;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class App {

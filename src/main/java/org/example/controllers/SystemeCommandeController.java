@@ -1,7 +1,7 @@
 package org.example.controllers;
 
 import org.example.core.Template;
-import org.example.models.Commande;
+import org.example.models.Order;
 import org.example.models.Food;
 import org.example.models.SystemeCommande;
 import spark.Request;
@@ -34,11 +34,11 @@ public class SystemeCommandeController {
         int index = id - 1;
 
 
-        Commande commande = systemeCommande.getCommande(index);
+        Order order = systemeCommande.getCommande(index);
 
         String state = request.queryParamOrDefault("action", "");
-        if (state.equals("undo"))  commande.restore(commande.getCommandHistory().undo());
-        if (state.equals("redo"))  commande.restore(commande.getCommandHistory().redo());
+        if (state.equals("undo"))  order.restore(order.getCommandHistory().undo());
+        if (state.equals("redo"))  order.restore(order.getCommandHistory().redo());
 
 
         model.put("commands", systemeCommande.getOrderList());
@@ -60,10 +60,10 @@ public class SystemeCommandeController {
         if (idMenu.equals(2)) menu = Arrays.asList(burger, accompagnement);
         if (idMenu.equals(3)) menu = Arrays.asList(burger);
 
-        Commande commande = new Commande();
-        commande.addPlats(menu);
-        commande.setOnCommandeChangeListener(systemeCommande);
-        systemeCommande.addOrder(commande);
+        Order order = new Order();
+        order.addPlats(menu);
+        order.setOnCommandeChangeListener(systemeCommande);
+        systemeCommande.addOrder(order);
 
         Map<String, Object> model = new HashMap<>();
 

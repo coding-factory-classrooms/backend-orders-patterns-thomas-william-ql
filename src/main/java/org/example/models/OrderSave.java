@@ -5,16 +5,16 @@ import java.util.List;
 
 public class OrderSave {
 
-    private final CommandHistory commandHistory;
+    private final OrderHistory orderHistory;
 
     private final int id;
-    private final Commande.OnCommandeChangeListener onCommandeChangeListener;
-    private final Commande.State state;
+    private final Order.OnCommandeChangeListener onCommandeChangeListener;
+    private final Order.State state;
     private final  List<Food> plats;
     private final LocalDate localdate;
 
-    public OrderSave(CommandHistory commandHistory, int id, Commande.OnCommandeChangeListener onCommandeChangeListener, Commande.State state, List<Food> plats, LocalDate localdate) {
-        this.commandHistory = commandHistory;
+    public OrderSave(OrderHistory orderHistory, int id, Order.OnCommandeChangeListener onCommandeChangeListener, Order.State state, List<Food> plats, LocalDate localdate) {
+        this.orderHistory = orderHistory;
         this.id = id;
         this.onCommandeChangeListener = onCommandeChangeListener;
         this.state = state;
@@ -22,7 +22,7 @@ public class OrderSave {
         this.localdate = localdate;
     }
 
-    public Commande getOrderFromOrderSave(){
-        return new Commande(commandHistory, id, onCommandeChangeListener, state, plats, localdate);
+    public Order getOrderFromOrderSave(){
+        return new Order(orderHistory, id, onCommandeChangeListener, state, plats, localdate);
     }
 }

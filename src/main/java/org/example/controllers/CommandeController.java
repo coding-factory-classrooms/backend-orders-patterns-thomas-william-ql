@@ -1,7 +1,7 @@
 package org.example.controllers;
 
 import org.example.core.Template;
-import org.example.models.Commande;
+import org.example.models.Order;
 import org.example.models.SystemeCommande;
 import spark.Request;
 import spark.Response;
@@ -23,18 +23,18 @@ public class CommandeController {
         int index = id - 1;
 
 
-        Commande commande = systemeCommande.getCommande(index);
+        Order order = systemeCommande.getCommande(index);
 
         String state = request.queryParamOrDefault("state", "");
-        if (state.equals("ENCOURS")) commande.setState(Commande.State.ENCOURS);
-        if (state.equals("NOUVEAU")) commande.setState(Commande.State.NOUVEAU);
-        if (state.equals("TERMINEE")) commande.setState(Commande.State.TERMINEE);
-        if (state.equals("ANNULEE")) commande.setState(Commande.State.ANNULEE);
+        if (state.equals("ENCOURS")) order.setState(Order.State.ENCOURS);
+        if (state.equals("NOUVEAU")) order.setState(Order.State.NOUVEAU);
+        if (state.equals("TERMINEE")) order.setState(Order.State.TERMINEE);
+        if (state.equals("ANNULEE")) order.setState(Order.State.ANNULEE);
 
         Map<String, Object> model = new HashMap<>();
 
         model.put("orderID", id);
-        model.put("commande", commande);
+        model.put("commande", order);
         return Template.render("order.html", model);
     }
 

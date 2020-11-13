@@ -16,10 +16,10 @@
     <tbody>
     <tr>
         <th scope="row">$orderID</th>
-        <td>$commande.getId()</td>
-        <td>$commande.getLocaldate()</td>
-        <td>$commande.getState()</td>
-        <td>$commande.getPlats()</td>
+        <td>$order.getId()</td>
+        <td>$order.getLocaldate()</td>
+        <td>$order.getState()</td>
+        <td>$order.getPlats()</td>
     </tr>
     </tbody>
 </table>
@@ -34,7 +34,7 @@
         <option value="TERMINEE">Terminée</option>
         <option value="ANNULEE">Annulée</option>
     </select>
-    <a href="/commande/$orderID?state="></a>
+    <a href="/order/$orderID?state="></a>
     <script>
 
 
@@ -43,7 +43,7 @@
             console.log(event);
             let value = stateSelect.value;
             if (value === "NULL") return ;
-            window.location = window.location.origin + "/commande/$orderID?state=" + stateSelect.value;
+            window.location = window.location.origin + "/order/$orderID?state=" + stateSelect.value;
         })
 
     </script>

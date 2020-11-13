@@ -1,11 +1,11 @@
-import org.example.models.Commande;
+import org.example.models.Order;
 import org.example.models.LogSystem;
 import org.example.models.SystemeCommande;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SystemeCommandeTest {
+public class SystemeOrderTest {
 
     LogSystem logSystem;
     SystemeCommande systemeCommande;
@@ -21,7 +21,7 @@ public class SystemeCommandeTest {
 
         Assert.assertEquals(0 , systemeCommande.getOrderList().size());
 
-        systemeCommande.addOrder(new Commande());
+        systemeCommande.addOrder(new Order());
 
         Assert.assertEquals(1 , systemeCommande.getOrderList().size());
     }
@@ -32,7 +32,7 @@ public class SystemeCommandeTest {
 
         Assert.assertEquals(0 , systemeCommande.getHistory().size());
 
-        systemeCommande.addOrder(new Commande());
+        systemeCommande.addOrder(new Order());
 
         Assert.assertEquals(1 , systemeCommande.getHistory().size());
     }
@@ -41,9 +41,9 @@ public class SystemeCommandeTest {
 
         Assert.assertEquals(0 , systemeCommande.getHistory().size());
 
-        Commande commande = new Commande();
-        commande.setState(Commande.State.TERMINEE);
-        systemeCommande.addOrder(commande);
+        Order order = new Order();
+        order.setState(Order.State.TERMINEE);
+        systemeCommande.addOrder(order);
 
 
         Assert.assertEquals(0 , systemeCommande.getHistory().size());
@@ -56,11 +56,11 @@ public class SystemeCommandeTest {
 
         Assert.assertEquals(0 , systemeCommande.getHistory().size());
 
-        Commande commande = new Commande();
-        systemeCommande.addOrder(commande);
+        Order order = new Order();
+        systemeCommande.addOrder(order);
 
-        commande.setOnCommandeChangeListener(systemeCommande);
-        commande.setState(Commande.State.ENCOURS);
+        order.setOnCommandeChangeListener(systemeCommande);
+        order.setState(Order.State.ENCOURS);
 
         System.out.println(systemeCommande.getHistory());
         Assert.assertEquals(1 , systemeCommande.getHistory().size());

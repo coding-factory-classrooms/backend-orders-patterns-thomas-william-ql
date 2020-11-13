@@ -2,37 +2,37 @@ package org.example.models;
 
 import java.util.ArrayList;
 
-public class CommandHistory {
+public class OrderHistory {
 
-    private ArrayList<CommandState> history;
+    private ArrayList<OrderState> history;
     private int currentState = -1;
 
-    public CommandHistory() {
-        this.history = new ArrayList<CommandState>();
+    public OrderHistory() {
+        this.history = new ArrayList<OrderState>();
     }
 
-    public void addCommandState(CommandState commandState) {
-        this.history.add(commandState);
+    public void addCommandState(OrderState orderState) {
+        this.history.add(orderState);
         currentState = this.history.size() - 1;
     }
 
-    public CommandState getCommandState(Integer index) {
+    public OrderState getCommandState(Integer index) {
         if (index >= 0  && this.history.size() > index) {
             return this.history.get(index);
         }
         return null;
     }
 
-    public CommandState getCurrentCommandState() {
+    public OrderState getCurrentCommandState() {
         return this.getCommandState(this.currentState);
     }
 
-    public CommandState undo(){
+    public OrderState undo(){
 
         System.out.println("UNDO");
         if (currentState < 1) {
-            CommandState commandState = getCommandState(0);
-            return commandState;
+            OrderState orderState = getCommandState(0);
+            return orderState;
         }
 
         currentState--;
@@ -40,7 +40,7 @@ public class CommandHistory {
     }
 
 
-    public CommandState redo(){
+    public OrderState redo(){
         System.out.println("REDO");
         if (currentState >= this.history.size() -1) {
             currentState = this.history.size() -1;

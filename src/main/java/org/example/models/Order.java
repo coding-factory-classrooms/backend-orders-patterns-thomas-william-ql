@@ -4,22 +4,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commande {
+public class Order {
 
-    public Commande(CommandHistory commandHistory, int id, OnCommandeChangeListener onCommandeChangeListener, State state, List<Food> plats, LocalDate localdate) {
-        this.commandHistory = commandHistory;
+    public Order(OrderHistory orderHistory, int id, OnCommandeChangeListener onCommandeChangeListener, State state, List<Food> plats, LocalDate localdate) {
+        this.orderHistory = orderHistory;
         this.id = id;
         this.onCommandeChangeListener = onCommandeChangeListener;
         this.state = state;
         this.plats = plats;
         this.localdate = localdate;
     }
-    public Commande(){
+    public Order(){
 
     }
 
     public interface OnCommandeChangeListener {
-        void onCommandeChange(Commande commande);
+        void onCommandeChange(Order order);
     }
 
     public enum State{
@@ -31,7 +31,7 @@ public class Commande {
 
 
 
-    private CommandHistory commandHistory = new CommandHistory();
+    private OrderHistory orderHistory = new OrderHistory();
 
 
     private int id = (int) Math.round((Math.random() * (9999 - 1)) + 1);
@@ -46,10 +46,10 @@ public class Commande {
 
     public void setState(State state){
         //Save this first state
-        if (commandHistory.getCurrentCommandState() == null) this.commandHistory.addCommandState(save(this.state));
+        if (orderHistory.getCurrentCommandState() == null) this.orderHistory.addCommandState(save(this.state));
 
         this.state = state;
-        this.commandHistory.addCommandState(save(state));
+        this.orderHistory.addCommandState(save(state));
         if (onCommandeChangeListener != null) {
             onCommandeChangeListener.onCommandeChange(this);
         }
@@ -68,8 +68,8 @@ public class Commande {
         this.onCommandeChangeListener = onCommandeChangeListener;
     }
 
-    public CommandHistory getCommandHistory() {
-        return commandHistory;
+    public OrderHistory getCommandHistory() {
+        return orderHistory;
     }
 
     public int getId() {
@@ -77,17 +77,17 @@ public class Commande {
     }
 
 
-    public CommandState save(State state){
-        return new CommandState(state);
+    public OrderState save(State state){
+        return new OrderState(state);
     }
 
-    public void restore(CommandState commandState) {
+    public void restore(OrderState orderState) {
         System.out.println("RESTORE");
-        if (commandState != null) this.state = commandState.getState();
+        if (orderState != null) this.state = orderState.getState();
     }
 
     public OrderSave getSave() {
-       return new OrderSave(commandHistory, id,onCommandeChangeListener, state, plats, localdate);
+       return new OrderSave(orderHistory, id,onCommandeChangeListener, state, plats, localdate);
     }
 
 }

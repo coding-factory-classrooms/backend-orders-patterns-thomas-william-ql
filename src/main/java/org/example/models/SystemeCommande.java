@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SystemeCommande implements Commande.OnCommandeChangeListener {
+public class SystemeCommande implements Order.OnCommandeChangeListener {
 
 
 
     private final SystemeCommandeHistory systemeCommandeHistory = new SystemeCommandeHistory();
-    private List<Commande> orderList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
     private final List<String> history = new ArrayList<>();
     private final LogSystem logSystem;
 
@@ -17,21 +17,20 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
         this.logSystem = logSystem;
     }
 
-    public List<Commande> getOrderList(){
+    public List<Order> getOrderList(){
         return orderList;
     }
 
-    public Commande getCommande(int index){
+    public Order getCommande(int index){
         return this.orderList.get(index);
     }
 
 
-    public void addOrder(Commande commande){
-        if (commande.getState() != Commande.State.NOUVEAU){
+    public void addOrder(Order order){
+        if (order.getState() != Order.State.NOUVEAU){
             return;
         }
-
-        this.orderList.add(commande);
+        this.orderList.add(order);
         systemeCommandeHistory.save(this.orderList);
 
         System.out.println(systemeCommandeHistory.getCurrentlistOrderSave());
@@ -42,9 +41,9 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
     }
 
     @Override
-    public void onCommandeChange(Commande commande) {
-        logSystem.addLog("Commande id : "+ commande.getId() +" | Modification de l'état en : "+ commande.getState());
-        history.add("Order ID : " + commande.getId() + " | Commande etat : " + commande.getState() + " | date : " + commande.getLocaldate() + " | plats " + commande.getPlats());
+    public void onCommandeChange(Order order) {
+        logSystem.addLog("Commande id : "+ order.getId() +" | Modification de l'état en : "+ order.getState());
+        history.add("Order ID : " + order.getId() + " | Commande etat : " + order.getState() + " | date : " + order.getLocaldate() + " | plats " + order.getPlats());
 
         systemeCommandeHistory.save(this.orderList);
     }
@@ -54,7 +53,6 @@ public class SystemeCommande implements Commande.OnCommandeChangeListener {
     }
 
     public void restore(List<OrderSave> saveList) {
-        System.out.println("RESTORE");
-        if (saveList != null) this.orderList = saveList.stream().map(orderSave -> orderSave.getOrderFromOrderSave()).collect(Collectors.toList());
+        if (saveList != null) this.orderList = saveList.stream().map(OrderSave::getOrderFromOrderSave).collect(Collectors.toList());
     }
 }
