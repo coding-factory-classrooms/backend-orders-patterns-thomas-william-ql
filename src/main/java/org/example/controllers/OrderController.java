@@ -9,15 +9,15 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandeController {
+public class OrderController {
 
     private final SystemeCommande systemeCommande;
 
-    public CommandeController(SystemeCommande systemeCommande) {
+    public OrderController(SystemeCommande systemeCommande) {
         this.systemeCommande = systemeCommande;
     }
 
-    public String changeCommande(Request request, Response response) {
+    public String changeOrder(Request request, Response response) {
 
         int id = Integer.parseInt(request.params(":id"));
         int index = id - 1;
@@ -34,7 +34,7 @@ public class CommandeController {
         Map<String, Object> model = new HashMap<>();
 
         model.put("orderID", id);
-        model.put("commande", order);
+        model.put("order", order);
         return Template.render("order.html", model);
     }
 

@@ -19,7 +19,7 @@ public class Order {
     }
 
     public interface OnCommandeChangeListener {
-        void onCommandeChange(Order order);
+        void onOrderChange(Order order);
     }
 
     public enum State{
@@ -51,7 +51,7 @@ public class Order {
         this.state = state;
         this.orderHistory.addCommandState(save(state));
         if (onCommandeChangeListener != null) {
-            onCommandeChangeListener.onCommandeChange(this);
+            onCommandeChangeListener.onOrderChange(this);
         }
     }
     public void addPlats(List<Food> plats){

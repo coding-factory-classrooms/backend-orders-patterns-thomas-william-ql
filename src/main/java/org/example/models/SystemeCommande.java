@@ -41,7 +41,7 @@ public class SystemeCommande implements Order.OnCommandeChangeListener {
     }
 
     @Override
-    public void onCommandeChange(Order order) {
+    public void onOrderChange(Order order) {
         logSystem.addLog("Commande id : "+ order.getId() +" | Modification de l'état en : "+ order.getState());
         history.add("Order ID : " + order.getId() + " | Commande etat : " + order.getState() + " | date : " + order.getLocaldate() + " | plats " + order.getPlats());
 

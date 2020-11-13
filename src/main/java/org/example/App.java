@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.controllers.CommandeController;
+import org.example.controllers.OrderController;
 import org.example.controllers.SystemeCommandeController;
 import org.example.core.Conf;
 import org.example.core.Template;
@@ -18,7 +18,7 @@ public class App {
         initialize();
         LogSystem logSystem = new LogSystem();
         SystemeCommande systemeCommande = new SystemeCommande(logSystem);
-        CommandeController commandeController = new CommandeController(systemeCommande);
+        OrderController orderController = new OrderController(systemeCommande);
         SystemeCommandeController systemeCommandeController = new SystemeCommandeController(systemeCommande);
 
 
@@ -35,8 +35,8 @@ public class App {
             return systemeCommandeController.commandHistory(req, res);
         });
 
-        Spark.get("/commande/:id", (req, res) -> {
-            return commandeController.changeCommande(req, res);
+        Spark.get("/order/:id", (req, res) -> {
+            return orderController.changeOrder(req, res);
         });
         Spark.get("/create/:id", (req, res) -> {
             return systemeCommandeController.createCommande(req, res);
@@ -45,12 +45,12 @@ public class App {
             return systemeCommandeController.systemHistory(req, res);
         });
 
-        Spark.get("/customer", (req, res) -> {
+/*        Spark.get("/customer", (req, res) -> {
             return Template.render("customer.html", new HashMap<>());
         });
         Spark.get("/order", (req, res) -> {
             return Template.render("order.html", new HashMap<>());
-        });
+        });*/
     }
 
     static void initialize() {
